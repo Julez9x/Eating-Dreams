@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(TrailRenderer))]
 
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
     private bool isFacingRight = true;
+
+    private Vector3 start;
 
     private bool canDash = true;
     private bool isDashing;
@@ -29,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         tr = GetComponent<TrailRenderer>();
+
+        Vector3 start = rb.transform.position;
     }
 
     void Update()
@@ -51,9 +56,14 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpDuration);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetPlayer();
         }
 
         Flip();
@@ -77,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    //Checks if the object is not facing right, if not facing right then Flips the object
+    //Checks if the object is not facing right, if not facing right then it Flips the object
     private void Flip()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
@@ -103,5 +113,10 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+    }
+
+    private void ResetPlayer()
+    {
+        rb.transform.position = start;
     }
 }

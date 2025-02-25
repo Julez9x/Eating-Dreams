@@ -1244,6 +1244,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2906996469818437868, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
+      propertyPath: m_Time
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4216487376658894412, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Name
       value: Capsule

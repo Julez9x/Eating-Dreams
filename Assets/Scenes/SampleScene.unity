@@ -537,8 +537,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de67e4213fb2844689700971487bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowSpeed: 2
+  FollowSpeed: 5
   yOffset: 1
+  xOffset: 4.5
   target: {fileID: 1591753863}
 --- !u!1 &619394800
 GameObject:
@@ -1270,15 +1271,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4372824123223851581, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Color.b
-      value: 0.8490566
+      value: 0.3254272
       objectReference: {fileID: 0}
     - target: {fileID: 4372824123223851581, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Color.g
-      value: 0.82690394
+      value: 0.45028847
       objectReference: {fileID: 0}
     - target: {fileID: 4372824123223851581, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Color.r
-      value: 0.7249021
+      value: 0.9716981
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

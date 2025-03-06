@@ -29,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TrailRenderer tr;
 
+    [SerializeField] private ParticleSystem dirtParticles;
+
+    private ParticleSystem dirtParticalesInstance;
+
     [SerializeField] private DashingMeter dashingMeter;
 
     void Start()
@@ -50,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+            SpawnDirtParticles();
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
         }
 
@@ -117,6 +122,13 @@ public class PlayerMovement : MonoBehaviour
         dashingMeter.EmptyMeter();
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+    }
+
+    private void SpawnDirtParticles() 
+    {
+        Quaternion jumpDirection = Quaternion.FromToRotation(Vector3.left, Vector3.negativeInfinity);
+        //Instantiate gets the particles and clones them when in use
+        dirtParticalesInstance = Instantiate(dirtParticles, transform.position, Quaternion.identity);
     }
 
     private void ResetPlayer()

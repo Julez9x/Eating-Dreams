@@ -31,8 +31,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private ParticleSystem dirtParticles;
 
-    private ParticleSystem dirtParticalesInstance;
-
     [SerializeField] private DashingMeter dashingMeter;
 
     void Start()
@@ -54,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            SpawnDirtParticles();
+            CreateDirt();
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
         }
 
@@ -100,6 +98,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
+            if (IsGrounded()) 
+            { 
+                CreateDirt();
+            }
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
@@ -124,11 +126,9 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
 
-    private void SpawnDirtParticles() 
+    void CreateDirt() 
     {
-        Quaternion jumpDirection = Quaternion.FromToRotation(Vector3.left, Vector3.negativeInfinity);
-        //Instantiate gets the particles and clones them when in use
-        dirtParticalesInstance = Instantiate(dirtParticles, transform.position, Quaternion.identity);
+        dirtParticles.Play();
     }
 
     private void ResetPlayer()

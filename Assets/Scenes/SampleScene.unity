@@ -2662,8 +2662,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 0, b: 0, a: 1}
-        key1: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -21326,27 +21326,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2906996469818437868, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2906996469818437868, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2906996469818437868, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2906996469818437868, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Parameters.colorGradient.key1.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2906996469818437868, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Parameters.colorGradient.key1.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2906996469818437868, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Parameters.colorGradient.key1.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4216487376658894412, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Name

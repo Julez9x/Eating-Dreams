@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - MonsterWall
+  - DeathObject
   layers:
   - Default
   - TransparentFX

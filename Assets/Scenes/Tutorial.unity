@@ -6942,6 +6942,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 65575876}
     - target: {fileID: 4604920414541957410, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
+      propertyPath: jumpingPower
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604920414541957410, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: dirtParticles
       value: 
       objectReference: {fileID: 1314199472}

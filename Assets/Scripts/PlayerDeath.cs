@@ -6,15 +6,6 @@ using UnityEngine.SceneManagement;
 public class PlayerDeath : MonoBehaviour
 {
     public int Respawn;
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) 

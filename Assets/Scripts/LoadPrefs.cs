@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class LoadPrefs : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class LoadPrefs : MonoBehaviour
     [Header("Brightness Setting")]
     [SerializeField] private Slider brightnessSlider = null;
     [SerializeField] private TMP_Text brightnessTextValue = null;
+    [SerializeField] private Volume volume;
 
     [Header("Quality Level Setting")]
     [SerializeField] private TMP_Dropdown qualityDropdown;
@@ -79,7 +82,6 @@ public class LoadPrefs : MonoBehaviour
 
                 brightnessTextValue.text = localBrightness.ToString("0.0");
                 brightnessSlider.value = localBrightness;
-                //Change the brightness
             }
 
             if (PlayerPrefs.HasKey("masterSen")) 

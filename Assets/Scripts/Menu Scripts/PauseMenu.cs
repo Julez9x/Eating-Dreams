@@ -9,7 +9,6 @@ public class PauseMenu : MonoBehaviour
 {
 
     public bool isPaused = false;
-
     public GameObject pauseMenuUI;
 
     [Header("Volume Setting")]
@@ -79,14 +78,17 @@ public class PauseMenu : MonoBehaviour
     
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseGame();
-        }
-        else 
-        {
-            Resume();
-        }
+            if (isPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                pauseGame();
+            }
+        }    
     }
 
     public void toMenu() 
@@ -97,7 +99,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume() 
     {
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = 1.0f;
         isPaused = false;
     }
 

@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
 {
     [Header("Misc")]
     public Animator doorAnimator;
+    public Animator flashAnimator;
 
     [Header("Volume Setting")]
     [SerializeField] private TMP_Text volumeTextValue = null;
@@ -84,9 +85,7 @@ public class MenuController : MonoBehaviour
     }
 
     public void NewGameDialogYes() 
-    {
-                
-        doorAnimator.Play("DoorOpen");
+    { 
         StartCoroutine(newGame());
     }
 
@@ -223,6 +222,8 @@ public class MenuController : MonoBehaviour
 
     public IEnumerator newGame() 
     {
+        doorAnimator.Play("DoorOpen");
+        flashAnimator.Play("MenuFlash");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(_newGameLevel);
     }

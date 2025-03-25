@@ -10,6 +10,8 @@ public class PauseMenu : MonoBehaviour
 
     public bool isPaused = false;
     public GameObject pauseMenuUI;
+    [Header("Misc")]
+
 
     [Header("Volume Setting")]
     [SerializeField] private TMP_Text volumeTextValue = null;

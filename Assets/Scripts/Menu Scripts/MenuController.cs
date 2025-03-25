@@ -8,9 +8,12 @@ using System.Collections.Generic;
 
 public class MenuController : MonoBehaviour
 {
+    [Header("Menu")]
+    [SerializeField] GameObject mainMenu;
+
     [Header("Misc")]
     public Animator doorAnimator;
-    public Animator flashAnimator;
+
 
     [Header("Volume Setting")]
     [SerializeField] private TMP_Text volumeTextValue = null;
@@ -51,8 +54,15 @@ public class MenuController : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
 
+    private void Awake()
+    {
+        this.gameObject.SetActive(true);
+        mainMenu.gameObject.SetActive(true);
+    }
+
     private void Start()
     {
+
         //This entire code, checks the resolution of the screen and gives options depending on what is found
         //DEPENDING on the screen size on start and places the resolution number into the [i] box
         resolutions = Screen.resolutions;
@@ -223,7 +233,6 @@ public class MenuController : MonoBehaviour
     public IEnumerator newGame() 
     {
         doorAnimator.Play("DoorOpen");
-        flashAnimator.Play("MenuFlash");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(_newGameLevel);
     }

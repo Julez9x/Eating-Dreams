@@ -5,8 +5,12 @@ using System.Collections;
 using TMPro;
 using System.Collections.Generic;
 
+
 public class MenuController : MonoBehaviour
 {
+    [Header("Misc")]
+    public Animator doorAnimator;
+
     [Header("Volume Setting")]
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
@@ -81,7 +85,9 @@ public class MenuController : MonoBehaviour
 
     public void NewGameDialogYes() 
     {
-        SceneManager.LoadScene(_newGameLevel);
+                
+        doorAnimator.Play("DoorOpen");
+        StartCoroutine(newGame());
     }
 
     public void LoadGameDialogYes() 
@@ -213,5 +219,11 @@ public class MenuController : MonoBehaviour
         confirmationPrompt.SetActive(true);
         yield return new WaitForSeconds(2);
         confirmationPrompt.SetActive(false);
+    }
+
+    public IEnumerator newGame() 
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(_newGameLevel);
     }
 }

@@ -15,7 +15,7 @@ public class PostProcessingControl : MonoBehaviour
 
             if (volume.profile.TryGet(out ColorAdjustments colorAdjustments))
             {
-                colorAdjustments.contrast.value = Mathf.RoundToInt(localBrightness) * 10 / 5;
+                colorAdjustments.postExposure.value = Mathf.RoundToInt(localBrightness);
             }
         }
     }

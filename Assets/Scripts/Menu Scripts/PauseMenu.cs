@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class PauseMenu : MonoBehaviour
 {
 
-    bool isPaused = false;
+    public bool isPaused = false;
 
     public GameObject pauseMenuUI;
 
@@ -45,6 +45,7 @@ public class PauseMenu : MonoBehaviour
     [Header("Resolutions Dropdowns")]
     public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
+    
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -75,16 +76,22 @@ public class PauseMenu : MonoBehaviour
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
-    void Update()
+    
+    public void Update()
     {
-        if (isPaused)
-        {
-            Resume();
-        }
-        else 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             pauseGame();
         }
+        else 
+        {
+            Resume();
+        }
+    }
+
+    public void toMenu() 
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Resume() 
@@ -93,6 +100,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
     }
+
     public void pauseGame() 
     {
         pauseMenuUI.SetActive(true);

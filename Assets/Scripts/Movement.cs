@@ -15,11 +15,16 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canDash = true;
     private bool isDashing;
+
     [SerializeField] private float dashingPower;
     [SerializeField] private float dashingTime;
     [SerializeField] private float dashingCooldown;
 
-    [SerializeField] private float speed;
+    [SerializeField] private float accel;
+    [SerializeField] private float currentSpeed;
+    [SerializeField] private float normalSpeed;
+    [SerializeField] private float slowedSpeed;
+
     [SerializeField] private float jumpingPower;
     [SerializeField] private float jumpDuration;
 
@@ -28,10 +33,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TrailRenderer tr;
 
+<<<<<<< Updated upstream
+=======
+    [SerializeField] private ParticleSystem dirtParticles;
+
+    [SerializeField] private DashingMeter dashingMeter;
+
+
+>>>>>>> Stashed changes
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         tr = GetComponent<TrailRenderer>();
+
+        currentSpeed = normalSpeed;
 
         Vector3 start = rb.transform.position;
     }
@@ -76,7 +91,13 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(horizontal * currentSpeed, rb.linearVelocity.y);
+
+        //speeds up player if "currentSpeed" is lower than "normalSpeed"
+        if(currentSpeed <= normalSpeed)
+        {
+            currentSpeed += Time.deltaTime * accel;
+        }
     }
 
     private bool IsGrounded()
@@ -115,6 +136,22 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
 
+<<<<<<< Updated upstream
+=======
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Gas")
+        {
+            currentSpeed = slowedSpeed;
+        }
+    }
+
+    void CreateDirt() 
+    {
+        dirtParticles.Play();
+    }
+
+>>>>>>> Stashed changes
     private void ResetPlayer()
     {
         rb.transform.position = start;

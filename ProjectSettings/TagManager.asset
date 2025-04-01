@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MonsterWall
   - DeathObject
+  - Gas
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Monster
   - 
   - 
   - 
@@ -43,11 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Building
-    uniqueID: 4099037799
-    locked: 0
   - name: Monster
     uniqueID: 1383458461
     locked: 0
+  - name: Building
+    uniqueID: 4099037799
+    locked: 0
   m_RenderingLayers:
   - Default
+  - Layer 1

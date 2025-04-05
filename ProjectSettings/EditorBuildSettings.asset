@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CityLevel.unity
     guid: b3fb2e54d4e889f409edac1c1c5bc21a
+  - enabled: 1
+    path: Assets/Scenes/TempLevel.unity
+    guid: e851232df6fc7854fbad30935bdf0b8e
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

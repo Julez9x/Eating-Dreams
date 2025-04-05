@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 start;
 
+    [Header("Dash Parameters")]
     private bool canDash = true;
     private bool isDashing;
 
@@ -21,17 +22,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingTime;
     [SerializeField] private float dashingCooldown;
 
+    [Header("Player Speed Parameters")]
     [SerializeField] private float accel;
     [SerializeField] private float currentSpeed;
     [SerializeField] private float normalSpeed;
     [SerializeField] private float slowedSpeed;
 
+    [Header("Player Jump Parameters")]
     [SerializeField] private float jumpingPower;
     [SerializeField] private float jumpDuration;
 
+    [Space(10)]
+    [Header("Ground Check")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+
+    [Header("Misc")]
     [SerializeField] private TrailRenderer tr;
 
     [SerializeField] private ParticleSystem dirtParticles;

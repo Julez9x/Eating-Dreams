@@ -5,13 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
+
+    public GameObject deathMenuUI;
     public int Respawn;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) 
         {
-            Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.name);
+            DeathMenu();
         }
+    }
+
+    public void DeathMenu() 
+    {
+        deathMenuUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

@@ -46,9 +46,12 @@ public class PauseMenu : MonoBehaviour
     [Header("Resolutions Dropdowns")]
     public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
-    
+
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
@@ -104,6 +107,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
         isPaused = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void pauseGame() 
@@ -111,6 +117,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void SetValue(float volume)

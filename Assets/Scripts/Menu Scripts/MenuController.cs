@@ -62,7 +62,6 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
-
         //This entire code, checks the resolution of the screen and gives options depending on what is found
         //DEPENDING on the screen size on start and places the resolution number into the [i] box
         resolutions = Screen.resolutions;

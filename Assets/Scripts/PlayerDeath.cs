@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
-
     public GameObject deathMenuUI;
     public int Respawn;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) 
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             DeathMenu();
         }
     }

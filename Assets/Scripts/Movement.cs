@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(TrailRenderer))]
@@ -13,25 +14,44 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 start;
 
+    [Header("Dash Parameters")]
     private bool canDash = true;
     private bool isDashing;
+
     [SerializeField] private float dashingPower;
     [SerializeField] private float dashingTime;
     [SerializeField] private float dashingCooldown;
 
-    [SerializeField] private float speed;
+    [Header("Player Speed Parameters")]
+    [SerializeField] private float accel;
+    [SerializeField] private float currentSpeed;
+    [SerializeField] private float normalSpeed;
+    [SerializeField] private float slowedSpeed;
+
+    [Header("Player Jump Parameters")]
     [SerializeField] private float jumpingPower;
     [SerializeField] private float jumpDuration;
 
+    [Space(10)]
+    [Header("Ground Check")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+
+    [Header("Misc")]
     [SerializeField] private TrailRenderer tr;
+
+    [SerializeField] private ParticleSystem dirtParticles;
+
+    [SerializeField] private DashingMeter dashingMeter;
+    [SerializeField] public Animator playerAnimator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         tr = GetComponent<TrailRenderer>();
+
+        currentSpeed = normalSpeed;
 
         Vector3 start = rb.transform.position;
     }
@@ -45,8 +65,12 @@ public class PlayerMovement : MonoBehaviour
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
+        //Mathf.Abs makes sure the number is always positive
+        playerAnimator.SetFloat("Speed", Mathf.Abs(horizontal));
+
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+            CreateDirt();
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
         }
 
@@ -54,16 +78,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpDuration);
+            playerAnimator.SetBool("IsJumping", true);
+        }
+        else if (IsGrounded()) 
+        {
+            playerAnimator.SetBool("IsJumping", false);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetPlayer();
         }
 
         Flip();
@@ -76,7 +100,13 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(horizontal * currentSpeed, rb.linearVelocity.y);
+
+        //speeds up player if "currentSpeed" is lower than "normalSpeed"
+        if(currentSpeed <= normalSpeed)
+        {
+            currentSpeed += Time.deltaTime * accel;
+        }
     }
 
     private bool IsGrounded()
@@ -92,6 +122,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
+            if (IsGrounded()) 
+            { 
+                CreateDirt();
+            }
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
@@ -111,8 +145,22 @@ public class PlayerMovement : MonoBehaviour
         tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
+        dashingMeter.EmptyMeter();
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Gas")
+        {
+            currentSpeed = slowedSpeed;
+        }
+    }
+
+    void CreateDirt() 
+    {
+        dirtParticles.Play();
     }
 
     private void ResetPlayer()

@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSystem dirtParticles;
 
     [SerializeField] private DashingMeter dashingMeter;
+    [SerializeField] public Animator playerAnimator;
 
     void Start()
     {
@@ -64,6 +65,9 @@ public class PlayerMovement : MonoBehaviour
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
+        //Mathf.Abs makes sure the number is always positive
+        playerAnimator.SetFloat("Speed", Mathf.Abs(horizontal));
+
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             CreateDirt();
@@ -74,16 +78,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpDuration);
+            playerAnimator.SetBool("IsJumping", true);
+        }
+        else if (IsGrounded()) 
+        {
+            playerAnimator.SetBool("IsJumping", false);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetPlayer();
         }
 
         Flip();

@@ -19086,6 +19086,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977067952}
   m_CullTransparentMesh: 1
+--- !u!95 &1978891020 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1779220287681284468, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
+  m_PrefabInstance: {fileID: 8025486604753960005}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998563683
 GameObject:
   m_ObjectHideFlags: 0
@@ -20428,15 +20433,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4372824123223851581, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Color.b
-      value: 0.3254272
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4372824123223851581, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Color.g
-      value: 0.45028847
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4372824123223851581, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_Color.r
-      value: 0.9716981
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4372824123223851581, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
       propertyPath: m_SortingOrder
@@ -20470,6 +20475,10 @@ PrefabInstance:
       propertyPath: dirtParticles
       value: 
       objectReference: {fileID: 1314199472}
+    - target: {fileID: 4604920414541957410, guid: 1012569541eab7a4999ad07e4d50428d, type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 1978891020}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

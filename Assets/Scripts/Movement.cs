@@ -78,6 +78,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpDuration);
+        }
+
+        if (!IsGrounded())
+        {
             playerAnimator.SetBool("IsJumping", true);
         }
         else if (IsGrounded()) 

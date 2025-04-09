@@ -19012,6 +19012,10 @@ PrefabInstance:
       propertyPath: deathMenuUI
       value: 
       objectReference: {fileID: 534068117}
+    - target: {fileID: 4666375392507945091, guid: 9e283e0bb8ffd6f4a850f7229aafe2cb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4873524057535781066, guid: 9e283e0bb8ffd6f4a850f7229aafe2cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -162.5
